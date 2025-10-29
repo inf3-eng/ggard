@@ -1,0 +1,5 @@
+{
+  "name": "Gardening Assistant",
+  "description": "An AI-powered gardening assistant that identifies plants from photos, provides detailed care instructions, analyzes their health, suggests improvements, estimates local prices, and includes a helpful chatbot for any gardening questions.",
+  "requestFramePermissions": []
+}
