@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import Header from './components/Header';
 import ImageUploader from './components/ImageUploader';
@@ -18,6 +17,14 @@ function App() {
   ]);
   const [isChatThinking, setIsChatThinking] = useState(false);
 
+  const handleApiError = (err: unknown) => {
+    console.error(err);
+    if (err instanceof Error && err.message.includes('API Key not valid')) {
+      return 'The API key configured for this application is invalid. Please contact the site administrator.';
+    }
+    return 'An unexpected error occurred. Please try again.';
+  };
+
   const handleImageSelect = async (base64: string, mimeType: string) => {
     setUploadedImage(`data:${mimeType};base64,${base64}`);
     setAnalysis(null);
@@ -27,8 +34,8 @@ function App() {
       const result = await analyzePlantImage(base64, mimeType);
       setAnalysis(result);
     } catch (err) {
-      console.error(err);
-      setError('Failed to analyze the image. Please try another one.');
+      const errorMessage = handleApiError(err);
+      setError(errorMessage);
     } finally {
       setIsLoading(false);
     }
@@ -42,8 +49,8 @@ function App() {
       const response = await getChatResponse(chatHistory, message);
       setChatHistory([...newHistory, { role: 'model', text: response }]);
     } catch (err) {
-      console.error(err);
-      setChatHistory([...newHistory, { role: 'model', text: 'Sorry, I encountered an error. Please try again.' }]);
+      const errorMessage = handleApiError(err);
+      setChatHistory([...newHistory, { role: 'model', text: `Sorry, I encountered an error. ${errorMessage}` }]);
     } finally {
       setIsChatThinking(false);
     }

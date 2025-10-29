@@ -28,18 +28,7 @@ const SkeletonLoader: React.FC = () => (
 );
 
 const CareIcon: React.FC<{ type: 'watering' | 'sunlight' | 'soil' }> = ({ type }) => {
-    const icons = {
-        watering: (
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 1.343-3 3s1.343 3 3 3 3-1.343 3-3-1.343-3-3-3zm0 0V5m0 14v-2.143M4.929 4.929L6.343 6.343m11.314 11.314l-1.414-1.414M4.929 19.071l1.414-1.414M17.657 6.343l-1.414 1.414" /></svg>
-        ),
-        sunlight: (
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707" /></svg>
-        ),
-        soil: (
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M4 17v4m-2-2h4m13-14v4m-2-2h4m-2 12v4m-2-2h4" /></svg>
-        ),
-    };
-
+    // FIX: Removed unused 'icons' variable which contained an incorrect icon for 'watering'.
     const iconPaths = {
         watering: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6.5C8.686 6.5 6 9.186 6 12.5c0 3.866 6 8.5 6 8.5s6-4.634 6-8.5C18 9.186 15.314 6.5 12 6.5z" />,
         sunlight: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707" />,
