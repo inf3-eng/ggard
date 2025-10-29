@@ -1,8 +1,7 @@
-
 import { GoogleGenAI, Type } from "@google/genai";
 import type { PlantAnalysis, ChatMessage } from '../types';
 
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY as string });
+const getAI = () => new GoogleGenAI({ apiKey: process.env.API_KEY as string });
 
 function fileToGenerativePart(base64: string, mimeType: string) {
   return {
@@ -14,6 +13,7 @@ function fileToGenerativePart(base64: string, mimeType: string) {
 }
 
 export async function analyzePlantImage(base64Image: string, mimeType: string): Promise<PlantAnalysis> {
+    const ai = getAI();
     const imagePart = fileToGenerativePart(base64Image, mimeType);
 
     const prompt = `You are a world-class botanist and gardening expert. Analyze the provided image of a plant. Based on the image, provide the following information in a structured JSON format:
@@ -58,6 +58,7 @@ export async function analyzePlantImage(base64Image: string, mimeType: string): 
 }
 
 export async function getChatResponse(history: ChatMessage[], newMessage: string): Promise<string> {
+    const ai = getAI();
     const model = 'gemini-2.5-flash';
     const contents = history.map(msg => ({
         role: msg.role,
